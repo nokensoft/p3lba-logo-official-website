@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Carousel Penawaran Website P3LBA</title>
+<!-- 11 poster carousel Instagram (4:5, 1080×1350) — penawaran awal website P3LBA oleh Nokensoft.
+     Sunting langsung di sini, lalu render ulang: node posters/build-posters-p3lba.cjs -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --f9:#0F3320;--f8:#154425;--f7:#18552C;--f6:#1E6B35;--f5:#2A8443;--f2:#ABDAB6;--f1:#D5EDDA;--f0:#EEF7F0;
+  --t6:#B04B24;--t5:#C95F32;--t1:#FAE4D5;--t0:#FDF4EE;
+  --ochre:#C99A2E;--bark:#6B3410;--ivory:#FCF8F1;--peach:#F7DEC6;--ink:#1E1A16;--muted:#5b534b;
+  --nk:#0284c7;--nk9:#0b3b6e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#ccc;font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);display:flex;flex-direction:column;gap:40px;padding:40px;align-items:center}
+body.render{padding:0;gap:0}body.render .slide{display:none}body.render .slide.show{display:block}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--ivory);padding:0 84px}
+.d{font-family:Prompt,system-ui,sans-serif;font-weight:700;letter-spacing:-.01em}
+h1,h2{line-height:1.05}
+em{font-style:normal}
+.kicker{display:inline-flex;align-items:center;gap:14px;font-weight:700;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--t5)}
+.kicker::before{content:"";width:44px;height:4px;border-radius:2px;background:currentColor}
+.kicker.on-dark{color:var(--ochre)}
+/* bilah atas & bawah */
+.brand{position:absolute;top:64px;left:84px;display:flex;align-items:center;gap:16px;font-size:26px;font-weight:700;color:var(--f8);z-index:5}
+.brand.on-dark{color:#fff}
+.brand .x{font-weight:500;opacity:.55}
+.brand .nk{display:flex;align-items:center;gap:10px}
+.brand .nk img{height:34px}
+.logo{width:68px;height:68px;border-radius:50%;background:#fff;overflow:hidden;display:block;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.logo img{width:100%;height:100%;object-fit:contain;padding:3px}
+.pager{position:absolute;top:84px;right:84px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:22px;color:var(--f8);z-index:5}
+.pager i{width:56px;height:3px;background:currentColor;opacity:.35}
+.pager.on-dark{color:#fff}
+.swipe{position:absolute;bottom:64px;right:84px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:26px;color:var(--t5)}
+.swipe.on-dark{color:#fff}
+.foot{position:absolute;bottom:64px;left:84px;font-weight:700;font-size:24px;color:var(--f8);display:flex;align-items:center;gap:10px}
+.foot.on-dark{color:#fff}
+.foot img{height:30px}
+.head{padding-top:176px}
+.lead{font-size:30px;line-height:1.5;color:var(--muted);max-width:900px}
+.on-dark .lead,.lead.on-dark{color:rgba(255,255,255,.85)}
+/* perangkat */
+.laptop{position:absolute;filter:drop-shadow(0 30px 40px rgba(0,0,0,.35))}
+.lid{position:relative;background:#141414;border-radius:24px 24px 0 0;padding:20px 18px 16px;box-shadow:0 0 0 2px #3a3a3a inset}
+.cam{position:absolute;top:8px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#444}
+.lscreen{aspect-ratio:16/10;overflow:hidden;border-radius:4px;background:#fff}
+.lscreen img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.base{position:relative;height:22px;margin:0 -60px;background:linear-gradient(180deg,#e7e7ea 0%,#b9b9c0 70%,#8e8e96 100%);border-radius:2px 2px 22px 22px}
+.base span{position:absolute;top:0;left:50%;width:130px;height:9px;margin-left:-65px;background:#a5a5ad;border-radius:0 0 10px 10px}
+.phone{width:342px;height:720px;border-radius:50px;background:#111;padding:14px;box-shadow:0 30px 60px rgba(15,51,32,.35),0 0 0 2px #333 inset;flex-shrink:0}
+.screen{width:100%;height:100%;border-radius:38px;overflow:hidden;background:#fff}
+.screen img{width:100%;display:block}
+.tablet{position:absolute;background:#141414;border-radius:30px;padding:16px;box-shadow:0 26px 50px rgba(0,0,0,.35)}
+.tablet img{display:block;width:100%;aspect-ratio:820/1180;object-fit:cover;object-position:top;border-radius:12px}
+/* daftar fitur */
+.list{list-style:none;display:flex;flex-direction:column;gap:24px;flex:1}
+.list li{display:flex;gap:20px;align-items:flex-start}
+.ic{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;flex-shrink:0;font-size:26px;background:var(--f0);color:var(--f6)}
+.on-dark .ic{background:rgba(255,255,255,.12);color:var(--ochre)}
+.list b{display:block;font-size:30px;line-height:1.2}
+.list span{font-size:23px;line-height:1.4;color:var(--muted)}
+.on-dark .list span{color:rgba(255,255,255,.78)}
+.badge{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:10px 22px;font-size:22px;font-weight:700}
+
+/* 1. Sampul */
+.s1{background:var(--f9);color:#fff}
+.s1 .bg{position:absolute;inset:0;background:url(../assets/img/lembah-pegunungan.png) center/cover;opacity:.35}
+.s1 .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,51,32,.55) 0%,rgba(15,51,32,.2) 35%,rgba(15,51,32,.75) 62%,var(--f9) 82%)}
+.s1 .copy{position:absolute;left:84px;right:84px;top:200px}
+.s1 h1{font-size:118px;line-height:1;margin:22px 0 26px}
+.s1 h1 em{color:var(--ochre)}
+.s1 .tag{font-size:31px;font-weight:600;opacity:.92;max-width:820px;line-height:1.4}
+.s1 .by{display:flex;align-items:center;gap:14px;margin-top:26px;font-size:24px;font-weight:600;color:rgba(255,255,255,.8)}
+.s1 .by img{height:40px}
+.s1 .laptop{left:180px;top:820px;width:640px}
+
+/* 2. Mengapa */
+.s2 h2{font-size:80px;margin:24px 0 26px;color:var(--f8)}
+.s2 h2 em{color:var(--t5)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:46px}
+.card{background:#fff;border:2px solid var(--t1);border-radius:26px;padding:28px}
+.card .ic{margin-bottom:18px;background:var(--t0);color:var(--t5)}
+.card b{display:block;font-size:30px;color:var(--f8);line-height:1.2}
+.card span{display:block;margin-top:8px;font-size:23px;line-height:1.42;color:var(--muted)}
+.s2 .strip{position:absolute;left:84px;right:84px;bottom:150px;height:150px;border-radius:26px;background:url(../assets/img/pantai-papua.png) center 60%/cover}
+
+/* 3. Peta situs */
+.s3{background:var(--peach)}
+.s3 h2{font-size:80px;margin:24px 0 24px;color:var(--f8)}
+.pages{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
+.pg{background:#fff;border-radius:24px;padding:24px 26px;display:flex;gap:18px;align-items:flex-start}
+.pg .ic{background:var(--f0);color:var(--f6);width:56px;height:56px;font-size:24px}
+.pg b{display:block;font-size:28px;color:var(--ink)}
+.pg code{font-family:inherit;font-size:20px;font-weight:700;color:var(--t5)}
+.pg span{display:block;font-size:21px;line-height:1.4;color:var(--muted);margin-top:4px}
+
+/* 4. Fitur publik & 6. responsif (gelap) */
+.dark{background:linear-gradient(165deg,var(--f7) 0%,var(--f8) 55%,var(--f9) 100%);color:#fff}
+.dark h2{font-size:78px;margin:24px 0 22px}
+.dark h2 em{color:var(--ochre)}
+.split{display:flex;gap:56px;margin-top:50px;align-items:flex-start}
+.split .phone{transform:rotate(-3deg)}
+
+/* 5. Panel admin */
+.s5 h2{font-size:78px;margin:24px 0 20px;color:var(--f8)}
+.s5 h2 em{color:var(--t5)}
+.s5 .laptop{left:240px;top:575px;width:600px}
+.s5 .list{position:absolute;left:84px;right:84px;top:1060px;display:grid;grid-template-columns:1fr 1fr;gap:18px 30px}
+.s5 .list b{font-size:25px}
+.s5 .list span{font-size:19px}
+.s5 .list .ic{width:52px;height:52px;font-size:21px}
+.s5 .note{margin-top:22px;background:var(--f0);color:var(--f7)}
+/* banner tangkapan layar di bawah slide paket */
+.shotband{position:absolute;left:84px;right:84px;bottom:140px;height:230px;border-radius:24px;overflow:hidden;box-shadow:0 16px 36px rgba(15,51,32,.18);border:6px solid #fff}
+.shotband img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.shotband span{position:absolute;left:16px;bottom:14px;background:rgba(15,51,32,.85);color:#fff;font-size:18px;font-weight:700;padding:8px 14px;border-radius:999px}
+
+/* 6. Responsif */
+.s6 .devices{position:absolute;left:0;right:0;top:470px;height:560px}
+.s6 .laptop{left:84px;top:40px;width:640px}
+.s6 .tablet{left:610px;top:120px;width:280px}
+.s6 .phone{position:absolute;left:830px;top:220px;width:180px;height:380px;border-radius:30px;padding:8px}
+.s6 .phone .screen{border-radius:23px}
+.chips{position:absolute;left:84px;right:84px;bottom:150px;display:flex;gap:14px;flex-wrap:wrap}
+.chips span{border-radius:999px;padding:12px 22px;font-size:22px;font-weight:600;background:rgba(255,255,255,.12);color:#fff;display:inline-flex;gap:10px;align-items:center}
+.chips i{color:var(--ochre)}
+
+/* 7–9. Paket */
+.pk h2{font-size:84px;margin:20px 0 6px;color:var(--f8)}
+.pk .price{font-family:Prompt,sans-serif;font-weight:700;font-size:64px;color:var(--t5);line-height:1.1}
+.pk .price small{font-size:30px;font-weight:600;color:var(--muted);margin-right:8px}
+.pk .who{font-size:26px;color:var(--muted);margin-top:14px;max-width:880px;line-height:1.45}
+.tiers{display:flex;gap:12px;margin-top:34px}
+.tiers div{flex:1;border-radius:16px;padding:14px 18px;background:#fff;border:2px solid #eadfd2;font-size:20px;font-weight:700;color:var(--muted)}
+.tiers div small{display:block;font-size:17px;font-weight:600;opacity:.8}
+.tiers div.on{background:var(--f8);border-color:var(--f8);color:#fff}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-top:38px}
+.feat div{display:flex;gap:14px;align-items:flex-start;font-size:24px;line-height:1.35;font-weight:500}
+.feat i{color:var(--f5);margin-top:4px;font-size:22px}
+.feat .plus{grid-column:1/-1;background:var(--f0);border-radius:16px;padding:16px 20px;font-weight:700;color:var(--f7)}
+.feat .plus i{color:var(--f6)}
+.sub{margin-top:26px;font-size:21px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bark)}
+.pk2{background:linear-gradient(180deg,#fff 0%,var(--t0) 100%)}
+.reco{position:absolute;top:176px;right:84px;background:var(--ochre);color:#fff;transform:rotate(3deg);box-shadow:0 10px 24px rgba(201,154,46,.35)}
+.pk3{background:var(--f0)}
+.pk3 .feat{grid-template-columns:1fr 1fr}
+.pk3 .feat .plus{background:#fff}
+
+/* 10. Bonus & tahapan */
+.s10{background:var(--peach)}
+.s10 h2{font-size:78px;margin:24px 0 18px;color:var(--f8)}
+.s10 h2 em{color:var(--t5)}
+.bonus{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.bonus div{background:#fff;border-radius:24px;padding:24px}
+.bonus .ic{background:var(--t0);color:var(--t5);margin-bottom:14px}
+.bonus b{display:block;font-size:26px;color:var(--f8);line-height:1.2}
+.bonus span{display:block;font-size:20px;line-height:1.4;color:var(--muted);margin-top:6px}
+.steps{display:flex;gap:10px;margin-top:20px}
+.steps div{flex:1;background:var(--f8);color:#fff;border-radius:18px;padding:18px 16px;min-height:150px}
+.steps b{display:block;font-family:Prompt,sans-serif;font-size:34px;color:var(--ochre);line-height:1}
+.steps span{display:block;font-size:19px;line-height:1.35;margin-top:10px;font-weight:600}
+.terms{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+.terms div{display:flex;gap:12px;font-size:21px;color:var(--ink);align-items:flex-start}
+.terms i{color:var(--f6);margin-top:4px}
+
+/* 11. Nokensoft */
+.nks{background:#fff}
+.nks::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(2,132,199,.30) 2px,transparent 2px),linear-gradient(90deg,rgba(2,132,199,.30) 2px,transparent 2px);background-size:54px 54px;background-position:-1px -1px;-webkit-mask-image:radial-gradient(64% 52% at 50% 50%,transparent 0%,transparent 60%,#000 100%);mask-image:radial-gradient(64% 52% at 50% 50%,transparent 0%,transparent 60%,#000 100%)}
+.nks > *{position:relative;z-index:1}
+.nks .brand,.nks .pager{position:absolute}
+.nk-body{position:absolute;left:84px;right:84px;top:190px;text-align:center}
+.nk-pre{font-size:24px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#64748b}
+.nk-q{font-family:Prompt,sans-serif;font-weight:700;font-size:62px;line-height:1.1;color:var(--nk9);margin-top:16px}
+.nk-q em{color:var(--nk)}
+.nk-logo{width:600px;display:block;margin:20px auto 0}
+.nk-role{display:inline-block;background:var(--nk9);color:#fff;font-weight:700;font-size:28px;padding:14px 30px;border-radius:999px}
+.nk-contacts{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;margin:44px auto 0;max-width:860px;text-align:left}
+.nk-contacts div{display:flex;align-items:center;gap:16px;font-size:24px;font-weight:600;color:var(--ink)}
+.nk-contacts i{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#e0f2fe;color:var(--nk);font-size:22px;flex-shrink:0}
+.nk-contacts .wide{grid-column:1/-1}
+.nk-foot{position:absolute;left:0;right:0;bottom:64px;text-align:center;font-size:23px;font-weight:600;color:#64748b}
+</style>
+</head>
+<body>
+
+<!-- 1. Sampul -->
+<section class="slide s1">
+  <div class="bg"></div><div class="shade"></div>
+  <div class="brand on-dark"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager on-dark"><span>01</span><i></i><span>11</span></div>
+  <div class="copy">
+    <div class="kicker on-dark">Penawaran Awal</div>
+    <h1 class="d">Website Resmi<br><em>P3LBA</em></h1>
+    <div class="tag">Rumah digital untuk gerakan literasi perempuan Papua: profil, program, dampak, dan kontak dalam satu tempat.</div>
+    <div class="by">Diusulkan oleh <img src="../assets/img/nokensoft-logo.png" alt=""> Nokensoft · Papua IT Consultant</div>
+  </div>
+  <div class="laptop">
+    <div class="lid"><span class="cam"></span><div class="lscreen"><img src="shots-p3lba/home-desktop.jpg" alt=""></div></div>
+    <div class="base"><span></span></div>
+  </div>
+  <div class="swipe on-dark">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 2. Mengapa website -->
+<section class="slide s2">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>02</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker">Mengapa perlu website?</div>
+    <h2 class="d">Kerja baik perlu <em>dikenal lebih luas.</em></h2>
+    <p class="lead">Website resmi menjadi pusat informasi yang selalu dapat diakses oleh mitra, donor, relawan, dan masyarakat.</p>
+  </div>
+  <div class="grid2">
+    <div class="card"><span class="ic"><i class="fa-solid fa-id-card"></i></span><b>Profil kredibel</b><span>Sejarah, visi &amp; misi, nilai, pengurus, dan legalitas.</span></div>
+    <div class="card"><span class="ic"><i class="fa-solid fa-book-open-reader"></i></span><b>Etalase program</b><span>Program keaksaraan dan cerita dampak lewat galeri.</span></div>
+    <div class="card"><span class="ic"><i class="fa-solid fa-handshake"></i></span><b>Mudah dihubungi</b><span>Mitra, donor, dan relawan langsung terhubung ke sekretariat.</span></div>
+    <div class="card"><span class="ic"><i class="fa-solid fa-palette"></i></span><b>Citra konsisten</b><span>Identitas visual yang sama di web, media sosial, dan cetak.</span></div>
+  </div>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 3. Peta situs -->
+<section class="slide s3">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>03</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker">Peta situs</div>
+    <h2 class="d">Enam halaman, satu cerita utuh.</h2>
+    <p class="lead">Struktur menu yang jelas agar pengunjung cepat menemukan yang mereka cari.</p>
+  </div>
+  <div class="pages">
+    <div class="pg"><span class="ic"><i class="fa-solid fa-house"></i></span><div><b>Beranda</b><code>/</code><span>Hero, angka dampak, sorotan program, berita terbaru</span></div></div>
+    <div class="pg"><span class="ic"><i class="fa-solid fa-users"></i></span><div><b>Tentang Kami</b><code>/tentang</code><span>Sejarah, visi &amp; misi, nilai, pengurus, legalitas</span></div></div>
+    <div class="pg"><span class="ic"><i class="fa-solid fa-pen-nib"></i></span><div><b>Program Kerja</b><code>/program</code><span>Keaksaraan, literasi fungsional, ekonomi, relawan</span></div></div>
+    <div class="pg"><span class="ic"><i class="fa-solid fa-heart"></i></span><div><b>Dampak &amp; Cerita</b><code>/dampak</code><span>Testimoni, galeri kegiatan, laporan tahunan</span></div></div>
+    <div class="pg"><span class="ic"><i class="fa-solid fa-newspaper"></i></span><div><b>Publikasi</b><code>/berita</code><span>Berita kegiatan, modul terbuka, siaran pers</span></div></div>
+    <div class="pg"><span class="ic"><i class="fa-solid fa-location-dot"></i></span><div><b>Kontak</b><code>/kontak</code><span>Relawan, kemitraan &amp; donasi, peta, WhatsApp</span></div></div>
+  </div>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 4. Fitur situs publik -->
+<section class="slide dark">
+  <div class="brand on-dark"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager on-dark"><span>04</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker on-dark">Fitur utama</div>
+    <h2 class="d">Hangat, membumi, <em>dan hidup.</em></h2>
+    <p class="lead on-dark">Purwarupa ini sudah kami rancang khusus untuk P3LBA.</p>
+  </div>
+  <div class="split on-dark">
+    <div class="phone"><div class="screen"><img src="shots-p3lba/home-mobile.jpg" alt=""></div></div>
+    <ul class="list">
+      <li><span class="ic"><i class="fa-solid fa-mountain-sun"></i></span><div><b>Hero dinamis</b><span>Lanskap Papua berganti halus di balik logo P3LBA</span></div></li>
+      <li><span class="ic"><i class="fa-solid fa-chart-simple"></i></span><div><b>Angka dampak</b><span>Desa binaan, peserta, relawan, dan mitra dalam animasi hitung</span></div></li>
+      <li><span class="ic"><i class="fa-solid fa-images"></i></span><div><b>Galeri &amp; cerita</b><span>Momen kegiatan dan testimoni peserta belajar</span></div></li>
+      <li><span class="ic"><i class="fa-solid fa-map-location-dot"></i></span><div><b>Peta &amp; WhatsApp</b><span>Lokasi di Google Maps dan kontak sekali ketuk</span></div></li>
+    </ul>
+  </div>
+  <div class="foot on-dark"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe on-dark">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 5. Panel pengelola -->
+<section class="slide s5">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>05</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker">Panel pengelola</div>
+    <h2 class="d">Pengurus mengelola <em>sendiri.</em></h2>
+    <p class="lead">Perbarui berita, galeri, dan data tanpa harus paham kode.</p>
+    <div class="badge note"><i class="fa-solid fa-circle-info"></i> Tersedia di Paket II &amp; Paket III</div>
+  </div>
+  <div class="laptop">
+    <div class="lid"><span class="cam"></span><div class="lscreen"><img src="shots-p3lba/admin-desktop.jpg" alt=""></div></div>
+    <div class="base"><span></span></div>
+  </div>
+  <ul class="list">
+    <li><span class="ic"><i class="fa-solid fa-newspaper"></i></span><div><b>Berita &amp; blog</b><span>Tulis, simpan draf, lalu terbitkan</span></div></li>
+    <li><span class="ic"><i class="fa-solid fa-images"></i></span><div><b>Foto &amp; album</b><span>Unggah dokumentasi kegiatan</span></div></li>
+    <li><span class="ic"><i class="fa-solid fa-person-dress"></i></span><div><b>Data peserta</b><span>Cari, saring, dan rekap</span></div></li>
+    <li><span class="ic"><i class="fa-solid fa-user-shield"></i></span><div><b>Admin &amp; operator</b><span>Hak akses sesuai peran</span></div></li>
+  </ul>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 6. Responsif -->
+<section class="slide dark s6">
+  <div class="brand on-dark"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager on-dark"><span>06</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker on-dark">Desain responsif</div>
+    <h2 class="d">Nyaman di <em>semua layar.</em></h2>
+    <p class="lead on-dark">Tampil rapi di komputer, tablet, dan ponsel, serta tetap ringan untuk jaringan terbatas di daerah.</p>
+  </div>
+  <div class="devices">
+    <div class="laptop">
+      <div class="lid"><span class="cam"></span><div class="lscreen"><img src="shots-p3lba/dampak-desktop.jpg" alt=""></div></div>
+      <div class="base"><span></span></div>
+    </div>
+    <div class="tablet"><img src="shots-p3lba/program-tablet.jpg" alt=""></div>
+    <div class="phone"><div class="screen"><img src="shots-p3lba/kontak-mobile.jpg" alt=""></div></div>
+  </div>
+  <div class="chips">
+    <span><i class="fa-solid fa-mobile-screen"></i> Mobile-first</span>
+    <span><i class="fa-solid fa-bolt"></i> Ringan &amp; cepat</span>
+    <span><i class="fa-brands fa-google"></i> SEO dasar</span>
+    <span><i class="fa-solid fa-universal-access"></i> Mudah dibaca</span>
+  </div>
+  <div class="foot on-dark"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe on-dark">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 7. Paket I -->
+<section class="slide pk">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>07</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker">Paket I · Dasar</div>
+    <h2 class="d">Website Statis</h2>
+    <div class="price">Rp3.500.000</div>
+    <p class="who">Untuk mulai hadir secara online dengan profil lengkap dan kontak yang jelas.</p>
+  </div>
+  <div class="tiers"><div class="on">Paket I<small>Rp3,5 juta</small></div><div>Paket II<small>Rp7,5 juta</small></div><div>Paket III<small>mulai Rp15 juta</small></div></div>
+  <div class="feat">
+    <div><i class="fa-solid fa-check"></i>Satu/banyak halaman statis</div>
+    <div><i class="fa-solid fa-check"></i>Beranda &amp; banner utama</div>
+    <div><i class="fa-solid fa-check"></i>Profil organisasi</div>
+    <div><i class="fa-solid fa-check"></i>Struktur organisasi/tim</div>
+    <div><i class="fa-solid fa-check"></i>Laporan &amp; dampak</div>
+    <div><i class="fa-solid fa-check"></i>Galeri program &amp; kegiatan</div>
+    <div><i class="fa-solid fa-check"></i>Kontak + Google Maps / WA</div>
+    <div><i class="fa-solid fa-check"></i>Integrasi tautan terkait</div>
+    <div><i class="fa-solid fa-check"></i>Domain .org / .com / .id</div>
+    <div><i class="fa-solid fa-check"></i>Hosting 1 tahun</div>
+    <div><i class="fa-solid fa-check"></i>Dokumentasi &amp; laporan</div>
+  </div>
+  <div class="shotband"><img src="shots-p3lba/home-desktop.jpg" alt=""><span>Contoh: Beranda</span></div>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 8. Paket II -->
+<section class="slide pk pk2">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>08</span><i></i><span>11</span></div>
+  <div class="badge reco"><i class="fa-solid fa-star"></i> Rekomendasi</div>
+  <div class="head">
+    <div class="kicker">Paket II · Menengah</div>
+    <h2 class="d">Website Dinamis</h2>
+    <div class="price">Rp7.500.000</div>
+    <p class="who">Keseimbangan terbaik: pengurus memperbarui berita, modul, dan pendaftaran relawan secara mandiri.</p>
+  </div>
+  <div class="tiers"><div>Paket I<small>Rp3,5 juta</small></div><div class="on">Paket II<small>Rp7,5 juta</small></div><div>Paket III<small>mulai Rp15 juta</small></div></div>
+  <div class="feat">
+    <div class="plus"><i class="fa-solid fa-layer-group"></i>Semua fitur Paket I Dasar, ditambah:</div>
+    <div><i class="fa-solid fa-check"></i>Website dinamis banyak halaman</div>
+    <div><i class="fa-solid fa-check"></i>Dasbor &amp; statistik pengunjung</div>
+    <div><i class="fa-solid fa-check"></i>Manajemen blog &amp; kategori</div>
+    <div><i class="fa-solid fa-check"></i>Manajemen foto/video &amp; album</div>
+    <div><i class="fa-solid fa-check"></i>Formulir online &amp; verifikasi</div>
+    <div><i class="fa-solid fa-check"></i>Manajemen pengguna (penulis)</div>
+    <div><i class="fa-solid fa-check"></i>Laporan &amp; statistik siap cetak</div>
+    <div><i class="fa-solid fa-check"></i>Pelatihan admin &amp; penulis</div>
+  </div>
+  <div class="shotband"><img src="shots-p3lba/admin-desktop.jpg" alt=""><span>Contoh: Panel pengelola</span></div>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 9. Paket III -->
+<section class="slide pk pk3">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>09</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker">Paket III · Lengkap</div>
+    <h2 class="d">Dinamis, Database, GIS &amp; Pendampingan</h2>
+    <div class="price"><small>mulai</small>Rp15.000.000</div>
+  </div>
+  <div class="tiers"><div>Paket I<small>Rp3,5 juta</small></div><div>Paket II<small>Rp7,5 juta</small></div><div class="on">Paket III<small>mulai Rp15 juta</small></div></div>
+  <div class="feat">
+    <div class="plus"><i class="fa-solid fa-layer-group"></i>Semua fitur Paket II Menengah, ditambah:</div>
+    <div><i class="fa-solid fa-check"></i>Database &amp; sistem member</div>
+    <div><i class="fa-solid fa-check"></i>Pembuatan invoice</div>
+    <div><i class="fa-solid fa-check"></i>Jasa foto &amp; video profesional</div>
+    <div><i class="fa-solid fa-check"></i>Akun Google &amp; media sosial baru</div>
+  </div>
+  <div class="sub">Dukungan admin konten 12 bulan</div>
+  <div class="feat" style="margin-top:14px">
+    <div><i class="fa-solid fa-pen"></i>Postingan berita</div>
+    <div><i class="fa-solid fa-images"></i>Foto &amp; galeri</div>
+    <div><i class="fa-solid fa-bullhorn"></i>Poster &amp; publikasi medsos</div>
+    <div><i class="fa-solid fa-map-location-dot"></i>Database &amp; GIS</div>
+  </div>
+  <div class="shotband"><img src="shots-p3lba/kontak-desktop.jpg" alt="" style="object-position:center 30%"><span>Contoh: Peta lokasi</span></div>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 10. Bonus & tahapan -->
+<section class="slide s10">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA</div>
+  <div class="pager"><span>10</span><i></i><span>11</span></div>
+  <div class="head">
+    <div class="kicker">Bonus semua paket</div>
+    <h2 class="d">Lebih dari <em>sekadar website.</em></h2>
+  </div>
+  <div class="bonus">
+    <div><span class="ic"><i class="fa-brands fa-instagram"></i></span><b>Media sosial</b><span>Foto profil, sampul, bio, dan tautan ke website</span></div>
+    <div><span class="ic"><i class="fa-solid fa-wand-magic-sparkles"></i></span><b>Template Canva</b><span>Feed, story, dan poster kegiatan siap edit</span></div>
+    <div><span class="ic"><i class="fa-solid fa-address-card"></i></span><b>Kartu nama</b><span>Desain pengurus dengan identitas P3LBA</span></div>
+  </div>
+  <div class="sub" style="margin-top:40px">Tahapan pekerjaan</div>
+  <div class="steps">
+    <div><b>1</b><span>Kesepakatan &amp; uang muka</span></div>
+    <div><b>2</b><span>Pengumpulan materi</span></div>
+    <div><b>3</b><span>Desain &amp; pengembangan</span></div>
+    <div><b>4</b><span>Uji coba &amp; revisi</span></div>
+    <div><b>5</b><span>Peluncuran &amp; pelatihan</span></div>
+  </div>
+  <div class="terms">
+    <div><i class="fa-solid fa-circle-check"></i>Pembayaran bertahap 2 kali sesuai kesepakatan</div>
+    <div><i class="fa-solid fa-circle-check"></i>Harga dapat disesuaikan dengan kebutuhan organisasi</div>
+  </div>
+  <div class="shotband" style="height:200px"><img src="../assets/img/wisuda-keaksaraan.png" alt="" style="object-position:center 30%"></div>
+  <div class="foot"><img src="../assets/img/nokensoft-logo.png" alt=""> nokensoft.com</div>
+  <div class="swipe">Geser <i class="fa-solid fa-arrow-right"></i></div>
+</section>
+
+<!-- 11. Nokensoft -->
+<section class="slide nks">
+  <div class="brand"><span class="logo"><img src="../p3lba-logo.png" alt=""></span>P3LBA <span class="x">×</span> <span class="nk"><img src="../assets/img/nokensoft-logo.png" alt="">Nokensoft</span></div>
+  <div class="pager"><span>11</span><i></i><span>11</span></div>
+  <div class="nk-body">
+    <div class="nk-pre">Mari berdiskusi</div>
+    <div class="nk-q">Siap menyalakan <em>cahaya aksara</em> secara online?</div>
+    <img class="nk-logo" src="assets/nokensoft.png" alt="Nokensoft.com">
+    <div class="nk-role">Papua IT Consultant</div>
+    <div class="nk-contacts">
+      <div><i class="fa-brands fa-whatsapp"></i>+62 821-9955-8191</div>
+      <div><i class="fa-regular fa-envelope"></i>info@nokensoft.com</div>
+      <div><i class="fa-solid fa-globe"></i>www.nokensoft.com</div>
+      <div><i class="fa-brands fa-instagram"></i>@nokensoft</div>
+      <div class="wide"><i class="fa-solid fa-location-dot"></i>No. 4 Blok D, Nendali, Sentani, Kab. Jayapura</div>
+    </div>
+  </div>
+  <div class="nk-foot">Penawaran berlaku 30 hari · Rincian lengkap di surat penawaran</div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P3LBA — Perkumpulan Perempuan Peduli Literasi Buta Aksara</title>
+  <meta name="description" content="P3LBA adalah organisasi nirlaba yang mendampingi perempuan keluar dari buta aksara melalui pendidikan literasi yang inklusif dan berkelanjutan.">
+  <link rel="icon" type="image/png" href="p3lba-logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (CDN) + design tokens -->
+  <script src="https://cdn.tailwindcss.com/3.4.5"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Alpine.js (plugin dimuat sebelum core) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.14.1/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bg-ivory font-sans text-body text-ink" data-page="beranda">
+
+<!-- Navbar disisipkan oleh layout.js -->
+<script src="assets/js/layout.js"></script>
+
+<main>
+
+<!-- =========================================================
+     HERO (hijau, lengkung, gambar menumpuk)
+========================================================== -->
+<section id="beranda" class="relative bg-peach">
+  <div class="hero-curve relative isolate overflow-hidden bg-forest-700 pb-40 pt-32 sm:pb-52 sm:pt-40">
+    <!-- latar gambar transparan, berganti dengan transisi fade -->
+    <div x-data="{ i: 0, imgs: ['lembah-pegunungan','honai-awan','senja-danau','pantai-papua','pondok-danau','sungai-pegunungan'] }"
+         x-init="setInterval(() => i = (i + 1) % imgs.length, 6000)"
+         class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <template x-for="(img, idx) in imgs" :key="img">
+        <img :src="'assets/img/' + img + '.png'" alt=""
+             class="absolute inset-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in-out"
+             :class="idx === i ? 'opacity-25' : 'opacity-0'">
+      </template>
+      <div class="absolute inset-0 bg-gradient-to-b from-forest-800/40 via-transparent to-forest-700/60"></div>
+    </div>
+    <div class="mx-auto max-w-6xl px-4 text-center">
+      <p class="mb-5 text-eyebrow uppercase text-forest-200">Organisasi Nirlaba · Literasi Perempuan</p>
+      <h1 class="font-display text-display text-white">
+        Membuka Jendela Dunia <br class="hidden sm:block"> Melalui Aksara
+      </h1>
+    </div>
+  </div>
+
+  <!-- gambar menumpuk di lengkung -->
+  <div class="relative z-10 mx-auto -mt-36 w-60 sm:-mt-48 sm:w-72">
+    <div class="rotate-[-2deg] overflow-hidden rounded-xl2 border-4 border-white bg-white shadow-soft">
+      <img src="p3lba-logo.png" alt="Ilustrasi logo P3LBA: perempuan Papua membaca buku" class="aspect-[4/5] w-full object-contain p-3">
+    </div>
+    <span class="absolute -right-6 top-6 hidden rotate-6 rounded-full bg-ochre px-3 py-1 text-xs font-semibold text-white shadow sm:inline-block">
+      <i class="fa-solid fa-book-open mr-1"></i> Belajar Bersama
+    </span>
+  </div>
+</section>
+
+<!-- =========================================================
+     INTRO + KATA PROGRAM (peach)
+========================================================== -->
+<section class="bg-peach pb-24 pt-12">
+  <div class="mx-auto max-w-2xl px-4 text-center">
+    <p class="text-lead text-ink/75">
+      Kami percaya kemampuan membaca, menulis, dan berhitung adalah pintu gerbang menuju kemandirian ekonomi,
+      akses kesehatan, dan kesetaraan hak. Mari bersama memberdayakan perempuan untuk masa depan.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="kontak.html" class="inline-flex items-center gap-2 rounded-md bg-forest-600 px-5 py-3 text-small font-semibold text-white transition hover:bg-forest-700">
+        Dukung Kami <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+      <a href="program.html" class="inline-flex items-center gap-2 rounded-md border-2 border-ink px-5 py-3 text-small font-semibold text-ink transition hover:bg-ink hover:text-white">
+        Lihat Program <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     STATISTIK
+========================================================== -->
+<section class="relative isolate overflow-hidden bg-forest-800 bg-cover bg-center text-white" style="background-image: url('assets/img/lembah-pegunungan.png');">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-forest-900/80 via-forest-800/70 to-forest-900/85"></div>
+  <div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8"
+       x-data="{ stats: [
+         { n: 24,   s: '',  label: 'Desa Binaan',            icon: 'fa-house-flag' },
+         { n: 1200, s: '+', label: 'Peserta Didik Perempuan', icon: 'fa-person-dress' },
+         { n: 85,   s: '',  label: 'Relawan Pengajar Aktif',  icon: 'fa-chalkboard-user' },
+         { n: 12,   s: '',  label: 'Mitra Kolaborasi',        icon: 'fa-handshake' } ] }">
+    <template x-for="st in stats" :key="st.label">
+      <div x-data="{ v: 0 }" x-intersect.once="let t=0; const id=setInterval(()=>{ t+=1; v=Math.round(st.n*t/40); if(t>=40) clearInterval(id) },30)"
+           x-init="if(!window.IntersectionObserver) v = st.n" class="text-center">
+        <i class="fa-solid text-2xl text-ochre" :class="st.icon"></i>
+        <p class="mt-3 font-display text-h1"><span x-text="v.toLocaleString('id-ID')"></span><span x-text="st.s"></span></p>
+        <p class="mt-1 text-small text-white/70" x-text="st.label"></p>
+      </div>
+    </template>
+  </div>
+  <p class="pb-6 text-center text-xs text-white/40">* Angka ilustrasi — akan diperbarui dengan data capaian resmi.</p>
+</section>
+
+<!-- =========================================================
+     RINGKASAN PROGRAM
+========================================================== -->
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-xl">
+        <p class="text-eyebrow uppercase text-terra-600">Program Kerja</p>
+        <h2 class="mt-3 font-display text-h2">Belajar yang Dekat dengan Kehidupan Sehari-hari</h2>
+      </div>
+      <a href="program.html" class="inline-flex items-center gap-2 self-start rounded-md border-2 border-ink px-4 py-2 text-small font-semibold hover:bg-ink hover:text-white md:self-auto">
+        Semua Program <i class="fa-solid fa-arrow-right text-xs"></i>
+      </a>
+    </div>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="program.html" class="group overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5 transition hover:shadow-soft">
+        <div class="aspect-[4/3] overflow-hidden"><img src="assets/img/honai-awan.png" alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <div class="p-5">
+          <h3 class="font-display text-h4 group-hover:text-terra-600">Kelas Keaksaraan Dasar</h3>
+          <p class="mt-2 text-small text-ink/70">Membaca, menulis, dan berhitung dengan metode ramah orang dewasa.</p>
+        </div>
+      </a>
+      <a href="program.html" class="group overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5 transition hover:shadow-soft">
+        <div class="aspect-[4/3] overflow-hidden"><img src="assets/img/sungai-pegunungan.png" alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <div class="p-5">
+          <h3 class="font-display text-h4 group-hover:text-terra-600">Literasi Fungsional &amp; Keuangan</h3>
+          <p class="mt-2 text-small text-ink/70">Membaca dokumen dan mengelola keuangan keluarga.</p>
+        </div>
+      </a>
+      <a href="program.html" class="group overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5 transition hover:shadow-soft">
+        <div class="aspect-[4/3] overflow-hidden"><img src="assets/img/senja-danau.png" alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <div class="p-5">
+          <h3 class="font-display text-h4 group-hover:text-terra-600">Pemberdayaan Ekonomi</h3>
+          <p class="mt-2 text-small text-ink/70">Pendampingan usaha kecil, dari noken hingga hasil kebun.</p>
+        </div>
+      </a>
+      <a href="program.html" class="group overflow-hidden rounded-xl2 bg-white ring-1 ring-ink/5 transition hover:shadow-soft">
+        <div class="aspect-[4/3] overflow-hidden"><img src="assets/img/pondok-danau.png" alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <div class="p-5">
+          <h3 class="font-display text-h4 group-hover:text-terra-600">Pelatihan Relawan</h3>
+          <p class="mt-2 text-small text-ink/70">Membekali pegiat literasi lokal dengan metode dan modul.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     BERITA
+========================================================== -->
+<section id="berita" class="bg-white py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <p class="text-eyebrow uppercase text-terra-600">Publikasi &amp; Berita</p>
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <h2 class="mt-3 font-display text-h2">Kabar Terbaru</h2>
+      <a href="publikasi.html" class="inline-flex items-center gap-2 self-start rounded-md border-2 border-ink px-4 py-2 text-small font-semibold hover:bg-ink hover:text-white md:self-auto">Semua Berita <i class="fa-solid fa-arrow-right text-xs"></i></a>
+    </div>
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      <article class="group">
+        <div class="aspect-[16/10] overflow-hidden rounded-xl2"><img src="assets/img/wisuda-keaksaraan.png" alt="Peserta wisuda keaksaraan mengenakan toga" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-forest-600">Kegiatan · 08 Nov 2026</p>
+        <h3 class="mt-2 font-display text-h4 group-hover:text-terra-600"><a href="#">40 Mama Selesaikan Kelas Keaksaraan Dasar Angkatan III</a></h3>
+      </article>
+      <article class="group">
+        <div class="aspect-[16/10] overflow-hidden rounded-xl2"><img src="assets/img/belajar-bentuk.png" alt="Anak-anak belajar menyusun bentuk dan berhitung" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-forest-600">Modul Terbuka · 21 Okt 2026</p>
+        <h3 class="mt-2 font-display text-h4 group-hover:text-terra-600"><a href="#">Unduh Modul Belajar Berhitung untuk Pedagang Pasar</a></h3>
+      </article>
+      <article class="group">
+        <div class="aspect-[16/10] overflow-hidden rounded-xl2"><img src="assets/img/menyimak-cerita.png" alt="Anak-anak menyimak kegiatan literasi" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-forest-600">Siaran Pers · 08 Sep 2026</p>
+        <h3 class="mt-2 font-display text-h4 group-hover:text-terra-600"><a href="#">Hari Aksara Internasional: P3LBA Ajak Mitra Perluas Jangkauan</a></h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     AJAKAN
+========================================================== -->
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-[2rem] bg-peach px-6 py-14 text-center sm:px-12">
+      <i class="fa-solid fa-book-open pointer-events-none absolute -right-6 -top-6 text-[9rem] text-terra-200/60"></i>
+      <div class="relative mx-auto max-w-2xl">
+        <p class="text-eyebrow uppercase text-terra-700">Ayo Terlibat</p>
+        <h2 class="mt-3 font-display text-h2">Dukungan Anda Menyalakan Cahaya Aksara</h2>
+        <p class="mt-5 text-ink/70">Jadilah relawan pengajar, mitra program, atau donatur.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="kontak.html" class="inline-flex items-center gap-2 rounded-md bg-terra-500 px-5 py-3 text-small font-semibold text-white transition hover:bg-terra-600">Hubungi Kami <i class="fa-solid fa-arrow-right text-xs"></i></a>
+          <a href="tentang.html" class="inline-flex items-center gap-2 rounded-md border-2 border-ink px-5 py-3 text-small font-semibold transition hover:bg-ink hover:text-white">Tentang P3LBA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer disisipkan oleh layout.js -->
+<script>P3LBA.footer()</script>
+
+</body>
+</html>

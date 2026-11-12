@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dampak &amp; Cerita — P3LBA</title>
+  <meta name="description" content="Kisah perubahan dari kampung dan dokumentasi kegiatan literasi P3LBA.">
+  <link rel="icon" type="image/png" href="p3lba-logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (CDN) + design tokens -->
+  <script src="https://cdn.tailwindcss.com/3.4.5"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Alpine.js (plugin dimuat sebelum core) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.14.1/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bg-ivory font-sans text-body text-ink" data-page="dampak">
+
+<!-- Navbar disisipkan oleh layout.js -->
+<script src="assets/js/layout.js"></script>
+
+<main>
+
+<!-- =========================================================
+     HEADER HALAMAN
+========================================================== -->
+<section class="relative isolate overflow-hidden bg-forest-700 pb-16 pt-32 text-white sm:pb-20 sm:pt-40">
+  <img src="assets/img/semangat-anak.png" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-25">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-forest-800/50 via-transparent to-forest-800/70"></div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Breadcrumb" class="text-small text-white/70"><a href="index.html" class="hover:text-white">Beranda</a> <i class="fa-solid fa-chevron-right mx-2 text-[0.6rem]"></i> <span class="text-white">Dampak &amp; Cerita</span></nav>
+    <p class="mt-6 text-eyebrow uppercase text-forest-200">Dampak &amp; Cerita</p>
+    <h1 class="mt-3 max-w-3xl font-display text-h1">Dampak &amp; Cerita</h1>
+    <p class="mt-4 max-w-2xl text-lead text-white/80">Bukti nyata bahwa aksara membuka pintu, untuk percaya diri, penghidupan, dan suara di tengah masyarakat.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     DAMPAK & CERITA (testimoni)
+========================================================== -->
+<section id="dampak" class="bg-peach/60 py-24"
+         x-data="{ active: 0, stories: [
+           { q: 'Dulu saya cap jempol untuk tanda tangan. Sekarang saya bisa menulis nama sendiri dan membaca buku untuk cucu.', n: 'Mama Yosina', r: 'Peserta Kelas Keaksaraan' },
+           { q: 'Setelah belajar berhitung, saya bisa mencatat penjualan noken dan tahu berapa untung setiap minggu.', n: 'Mama Martha', r: 'Peserta Pemberdayaan Ekonomi' },
+           { q: 'Mengajar ibu-ibu di kampung membuat saya sadar, belajar tidak pernah terlambat.', n: 'Kak Ribka', r: 'Relawan Pengajar' } ] }">
+  <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
+    <div class="lg:col-span-2">
+      <p class="text-eyebrow uppercase text-terra-600">Dampak &amp; Cerita</p>
+      <h2 class="mt-3 font-display text-h2">Kisah Perubahan dari Kampung</h2>
+      <p class="mt-5 text-ink/70">Bukti nyata bahwa aksara membuka pintu—untuk percaya diri, penghidupan, dan suara di tengah masyarakat.</p>
+      <div class="mt-8 flex gap-3">
+        <button @click="active = (active + stories.length - 1) % stories.length" class="grid h-11 w-11 place-items-center rounded-full border-2 border-ink transition hover:bg-ink hover:text-white" aria-label="Sebelumnya"><i class="fa-solid fa-arrow-left"></i></button>
+        <button @click="active = (active + 1) % stories.length" class="grid h-11 w-11 place-items-center rounded-full bg-terra-500 text-white transition hover:bg-terra-600" aria-label="Berikutnya"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="relative lg:col-span-3">
+      <template x-for="(s, idx) in stories" :key="idx">
+        <figure x-show="active === idx" x-transition:enter="transition duration-500" x-transition:enter-start="opacity-0 translate-y-3"
+                class="rounded-xl2 bg-white p-8 shadow-soft sm:p-10">
+          <i class="fa-solid fa-quote-left text-4xl text-terra-200"></i>
+          <blockquote class="mt-4 font-display text-h3 font-medium text-ink" x-text="s.q"></blockquote>
+          <figcaption class="mt-8 flex items-center gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-full bg-forest-600 font-display text-white" x-text="s.n.split(' ')[1][0]"></span>
+            <span><b class="block font-semibold" x-text="s.n"></b><span class="text-small text-ink/60" x-text="s.r"></span></span>
+          </figcaption>
+        </figure>
+      </template>
+      <div class="mt-5 flex gap-2">
+        <template x-for="(s, idx) in stories" :key="'d'+idx">
+          <button @click="active = idx" class="h-2 rounded-full transition-all" :class="active === idx ? 'w-8 bg-terra-500' : 'w-2 bg-ink/20'" :aria-label="'Cerita ' + (idx + 1)"></button>
+        </template>
+      </div>
+      <p class="mt-3 text-xs text-ink/40">* Contoh testimoni — ganti dengan kisah peserta asli.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GALERI
+========================================================== -->
+<section id="galeri" class="bg-white py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between gap-4">
+      <h2 class="font-display text-h2">Momen Kegiatan</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+      <figure class="group relative aspect-[4/5] overflow-hidden rounded-xl2">
+        <img src="assets/img/belajar-bentuk.png" alt="Dua anak belajar menyusun bentuk dan warna di lantai kelas" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-10 text-[.7rem] uppercase tracking-[.08em] text-white">Belajar bentuk &amp; berhitung</figcaption>
+      </figure>
+      <figure class="group relative aspect-[4/5] overflow-hidden rounded-xl2">
+        <img src="assets/img/menyimak-cerita.png" alt="Anak-anak duduk menyimak cerita dengan antusias" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-10 text-[.7rem] uppercase tracking-[.08em] text-white">Menyimak cerita</figcaption>
+      </figure>
+      <figure class="group relative aspect-[4/5] overflow-hidden rounded-xl2">
+        <img src="assets/img/semangat-anak.png" alt="Anak-anak kampung mengacungkan jempol sambil tersenyum" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-10 text-[.7rem] uppercase tracking-[.08em] text-white">Semangat anak kampung</figcaption>
+      </figure>
+      <figure class="group relative aspect-[4/5] overflow-hidden rounded-xl2">
+        <img src="assets/img/kampung-pesisir.png" alt="Dua anak mendayung perahu di perairan jernih kampung pesisir Papua" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-10 text-[.7rem] uppercase tracking-[.08em] text-white">Kampung pesisir</figcaption>
+      </figure>
+      <figure class="group relative aspect-[4/5] overflow-hidden rounded-xl2">
+        <img src="assets/img/wisuda-keaksaraan.png" alt="Peserta wisuda keaksaraan berbaris mengenakan toga dan selempang hijau-kuning" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-10 text-[.7rem] uppercase tracking-[.08em] text-white">Wisuda keaksaraan</figcaption>
+      </figure>
+      <figure class="group relative aspect-[4/5] overflow-hidden rounded-xl2">
+        <img src="assets/img/honai-awan.png" alt="Honai di lereng pegunungan Papua di atas lautan awan" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-10 text-[.7rem] uppercase tracking-[.08em] text-white">Kampung pegunungan</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer disisipkan oleh layout.js -->
+<script>P3LBA.footer()</script>
+
+</body>
+</html>

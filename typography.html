@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panduan Tipografi — P3LBA</title>
+  <link rel="icon" type="image/png" href="p3lba-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.5"></script>
+  <script src="assets/js/tailwind.config.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-ivory font-sans text-body text-ink">
+
+<header class="bg-forest-700 text-white">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="grid h-11 w-11 place-items-center rounded-full bg-white p-0.5"><img src="p3lba-logo.png" alt="Logo P3LBA" class="h-full w-full rounded-full object-contain"></span>
+      <span class="font-display text-lg font-bold">P3LBA <span class="font-normal text-white/60">/ Panduan Gaya</span></span>
+    </a>
+    <a href="index.html" class="text-small text-white/80 hover:text-white"><i class="fa-solid fa-arrow-left mr-2"></i>Kembali</a>
+  </div>
+  <div class="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6">
+    <p class="text-eyebrow uppercase text-forest-200">Sistem Desain v1.0</p>
+    <h1 class="mt-3 font-display text-h1">Tipografi &amp; Warna</h1>
+    <p class="mt-4 max-w-2xl text-lead text-white/75">Hangat, memberdayakan, membumi, dan mudah dibaca—termasuk di layar ponsel dan koneksi terbatas.</p>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl space-y-24 px-4 py-20 sm:px-6">
+
+  <!-- Typefaces -->
+  <section>
+    <h2 class="font-display text-h2">Jenis Huruf</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl2 bg-white p-8 ring-1 ring-ink/10">
+        <p class="text-eyebrow uppercase text-terra-600">Display / Heading</p>
+        <p class="mt-4 font-display text-[5rem] font-bold leading-none">Aa</p>
+        <p class="mt-4 font-display text-h3">Prompt</p>
+        <p class="mt-2 text-small text-ink/70">Geometris dan bulat—tegas namun ramah. Dipakai untuk judul, angka statistik, kutipan, dan tombol besar.</p>
+        <p class="mt-4 font-display text-small text-ink/60">Bobot: 400 · 500 · <b>600</b> · <b>700</b></p>
+      </div>
+      <div class="rounded-xl2 bg-white p-8 ring-1 ring-ink/10">
+        <p class="text-eyebrow uppercase text-terra-600">Body / UI</p>
+        <p class="mt-4 font-sans text-[5rem] font-bold leading-none">Aa</p>
+        <p class="mt-4 font-sans text-h3 font-semibold">Plus Jakarta Sans</p>
+        <p class="mt-2 text-small text-ink/70">Humanis, dirancang di Indonesia, sangat terbaca di ukuran kecil. Dipakai untuk paragraf, navigasi, formulir, dan label.</p>
+        <p class="mt-4 text-small text-ink/60">Bobot: 400 · 500 · <b>600</b> · <b>700</b> · <i>italic</i></p>
+      </div>
+    </div>
+    <p class="mt-8 break-words font-display text-h3 text-ink/80">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 · &amp; ! ? ( ) “ ”</p>
+  </section>
+
+  <!-- Type scale -->
+  <section>
+    <h2 class="font-display text-h2">Skala Tipografi</h2>
+    <p class="mt-3 text-ink/70">Rasio ±1.25. Heading besar bersifat <i>fluid</i> (<code class="rounded bg-white px-1.5 text-small">clamp()</code>) agar proporsional di ponsel maupun desktop.</p>
+    <div class="mt-10 divide-y divide-ink/10 rounded-xl2 bg-white ring-1 ring-ink/10">
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-display</b>Prompt 700 · 44–88px · lh 1.02</div>
+        <p class="font-display text-display">Aksara</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-h1</b>Prompt 700 · 36–60px · lh 1.08</div>
+        <p class="font-display text-h1">Membuka Jendela Dunia</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-h2</b>Prompt 600 · 30–44px · lh 1.15</div>
+        <p class="font-display text-h2">Kisah Perubahan dari Kampung</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-h3</b>Prompt 600 · 22–28px · lh 1.25</div>
+        <p class="font-display text-h3">Kelas Keaksaraan Dasar</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-h4</b>Prompt 600 · 20px · lh 1.35</div>
+        <p class="font-display text-h4">Pelatihan Relawan Pengajar</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-lead</b>Jakarta 400 · 19px · lh 1.65</div>
+        <p class="text-lead">Kami percaya kemampuan membaca dan menulis adalah pintu gerbang menuju kemandirian.</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-body</b>Jakarta 400 · 16px · lh 1.7</div>
+        <p class="text-body">Melalui pendekatan pembelajaran yang ramah, partisipatif, dan relevan dengan kehidupan sehari-hari, P3LBA hadir mendampingi perempuan.</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-small</b>Jakarta 400 · 14px · lh 1.6</div>
+        <p class="text-small">Keterangan foto, metadata, label formulir.</p>
+      </div>
+      <div class="grid gap-3 p-6 md:grid-cols-[200px_1fr] md:items-baseline">
+        <div class="text-xs text-ink/50"><b class="block text-small text-ink">text-eyebrow</b>Jakarta 600 · 12px · +18% · UPPER</div>
+        <p class="text-eyebrow uppercase text-terra-600">Program Kerja</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section>
+    <h2 class="font-display text-h2">Palet Warna</h2>
+    <p class="mt-3 text-ink/70">Diturunkan dari logo: cokelat tanah, hijau hutan, dan oker—dengan terakota sebagai warna aksi.</p>
+
+    <div class="mt-10 space-y-8">
+      <div>
+        <p class="font-semibold">Terakota <span class="font-normal text-ink/50">— Primary · semangat, kepedulian, harapan</span></p>
+        <div class="mt-3 grid grid-cols-5 overflow-hidden rounded-xl text-[0.65rem] sm:grid-cols-10">
+          <div class="bg-terra-50 p-3 pt-10">50</div><div class="bg-terra-100 p-3 pt-10">100</div><div class="bg-terra-200 p-3 pt-10">200</div><div class="bg-terra-300 p-3 pt-10">300</div><div class="bg-terra-400 p-3 pt-10 text-white">400</div>
+          <div class="bg-terra-500 p-3 pt-10 text-white"><b>500</b><br>#C95F32</div><div class="bg-terra-600 p-3 pt-10 text-white">600</div><div class="bg-terra-700 p-3 pt-10 text-white">700</div><div class="bg-terra-800 p-3 pt-10 text-white">800</div><div class="bg-terra-900 p-3 pt-10 text-white">900</div>
+        </div>
+      </div>
+      <div>
+        <p class="font-semibold">Hijau Hutan <span class="font-normal text-ink/50">— Secondary · ketenangan, kepercayaan, pendidikan</span></p>
+        <div class="mt-3 grid grid-cols-5 overflow-hidden rounded-xl text-[0.65rem] sm:grid-cols-10">
+          <div class="bg-forest-50 p-3 pt-10">50</div><div class="bg-forest-100 p-3 pt-10">100</div><div class="bg-forest-200 p-3 pt-10">200</div><div class="bg-forest-300 p-3 pt-10">300</div><div class="bg-forest-400 p-3 pt-10 text-white">400</div>
+          <div class="bg-forest-500 p-3 pt-10 text-white">500</div><div class="bg-forest-600 p-3 pt-10 text-white">600</div><div class="bg-forest-700 p-3 pt-10 text-white"><b>700</b><br>#18552C</div><div class="bg-forest-800 p-3 pt-10 text-white">800</div><div class="bg-forest-950 p-3 pt-10 text-white">950</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-5">
+        <div><div class="h-20 rounded-xl bg-bark"></div><p class="mt-2 text-small"><b>Bark</b><br><span class="text-ink/50">#6B3410 · aksen logo</span></p></div>
+        <div><div class="h-20 rounded-xl bg-ochre"></div><p class="mt-2 text-small"><b>Ochre</b><br><span class="text-ink/50">#C99A2E · highlight</span></p></div>
+        <div><div class="h-20 rounded-xl bg-peach"></div><p class="mt-2 text-small"><b>Peach</b><br><span class="text-ink/50">#F7DEC6 · section</span></p></div>
+        <div><div class="h-20 rounded-xl bg-ivory ring-1 ring-ink/10"></div><p class="mt-2 text-small"><b>Ivory</b><br><span class="text-ink/50">#FCF8F1 · latar</span></p></div>
+        <div><div class="h-20 rounded-xl bg-ink"></div><p class="mt-2 text-small"><b>Ink</b><br><span class="text-ink/50">#1E1A16 · teks</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section>
+    <h2 class="font-display text-h2">Tombol &amp; Elemen</h2>
+    <div class="mt-10 flex flex-wrap items-center gap-4 rounded-xl2 bg-white p-8 ring-1 ring-ink/10">
+      <a href="#" class="inline-flex items-center gap-2 rounded-md bg-terra-500 px-5 py-3 text-small font-semibold text-white hover:bg-terra-600">Primary <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      <a href="#" class="inline-flex items-center gap-2 rounded-md bg-forest-600 px-5 py-3 text-small font-semibold text-white hover:bg-forest-700">Secondary <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      <a href="#" class="inline-flex items-center gap-2 rounded-md border-2 border-ink px-5 py-3 text-small font-semibold hover:bg-ink hover:text-white">Outline <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      <span class="rounded-full bg-terra-50 px-3 py-1 text-xs font-semibold text-terra-700">Badge</span>
+      <span class="rounded-full bg-forest-50 px-3 py-1 text-xs font-semibold text-forest-700">Badge</span>
+    </div>
+    <div class="mt-6 grid gap-4 rounded-xl2 bg-white p-8 text-small ring-1 ring-ink/10 md:grid-cols-3">
+      <p><i class="fa-solid fa-check mr-2 text-forest-500"></i>Panjang baris paragraf 60–75 karakter (<code>max-w-2xl</code>).</p>
+      <p><i class="fa-solid fa-check mr-2 text-forest-500"></i>Teks body minimal 16px; kontras ≥ 4.5:1 terhadap latar.</p>
+      <p><i class="fa-solid fa-check mr-2 text-forest-500"></i>Ikon: Font Awesome 6 (solid untuk aksi, regular untuk informasi).</p>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-forest-950 py-6 text-center text-xs text-white/50">© 2026 P3LBA · Panduan Gaya Visual</footer>
+</body>
+</html>
